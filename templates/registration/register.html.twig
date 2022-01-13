@@ -56,7 +56,7 @@
 
     <input type="submit" class="btn btn-success form-control" name="sign-up" value="Sign up">
     {{ form_end(registrationForm) }}
-    <p>Already have an account? <a href="#">Sign in →</a></p>
+    <p>Already have an account? <a href="{{ path('app_login') }}">Sign in →</a></p>
 </section>
     {% endblock %}
 
