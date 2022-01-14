@@ -11,7 +11,7 @@
         <p><a href="#"><img src="{{ asset('images/book.png') }}" alt="logo" width="60"/></a></p>
         <h1>Sign up</h1>
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <p class="alert alert-danger">{{ error.messageKey|replace({"Invalid credentials." : "Invalid username or password."})|trans(error.messageData, 'security') }}</p>
         {% endif %}
         <form method="post" class="form form-registration">
 
@@ -24,7 +24,7 @@
             #}
 
             <div class="mb-3">
-                <label for="inputUsername">Username</label>
+                <label for="inputUsername">Username or email address</label>
                 <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
                        autocomplete="username" required autofocus>
             </div>

@@ -39,6 +39,7 @@
 
     <div class="mb-3">
         {{ form_label(registrationForm.email) }}<br>
+        {{ form_errors(registrationForm.email) }}
         {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
     </div>
 

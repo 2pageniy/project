@@ -7,11 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity('email', 'This email is already used.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -28,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 180)]
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
     public function getId(): ?int
