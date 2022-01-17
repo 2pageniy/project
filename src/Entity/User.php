@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -29,6 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
+
+    #[ORM\OneToMany(mappedBy: 'creator', targetEntity: ItemCollection::class, orphanRemoval: true)]
+    private $itemCollections;
+
+    public function __construct()
+    {
+        $this->itemCollections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,6 +132,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ItemCollection[]
+     */
+    public function getItemCollections(): Collection
+    {
+        return $this->itemCollections;
+    }
+
+    public function addItemCollection(ItemCollection $itemCollection): self
+    {
+        if (!$this->itemCollections->contains($itemCollection)) {
+            $this->itemCollections[] = $itemCollection;
+            $itemCollection->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemCollection(ItemCollection $itemCollection): self
+    {
+        if ($this->itemCollections->removeElement($itemCollection)) {
+            // set the owning side to null (unless already changed)
+            if ($itemCollection->getCreator() === $this) {
+                $itemCollection->setCreator(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+{% include 'header.html.twig' %}
+
+
+   {% for itemCollection in itemCollection %}
+      <div style="display:flex">
+         <p style="padding-right: 10px;">{{ itemCollection.name }}</p>
+         <p>{{ itemCollection.topic }}</p>
+      </div>
+   {% endfor %}
+
+{% endblock %}
