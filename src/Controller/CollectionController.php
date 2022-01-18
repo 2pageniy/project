@@ -6,6 +6,7 @@ use App\Entity\Item;
 use App\Entity\ItemCollection;
 use App\Form\CreateCollectionType;
 use App\Form\EditCollectionType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class CollectionController extends AbstractController
     { }
 
     #[Route('/create', name: 'app_create_collection')]
-    public function create(Request $request): Response
+    public function create(Request $request, FileUploader $fileUploader): Response
     {
         $itemCollection = new ItemCollection();
         $form = $this->createForm(CreateCollectionType::class, $itemCollection);
@@ -37,6 +38,12 @@ class CollectionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $pictureFile = $form->get('picture')->getData();
+            if ($pictureFile) {
+                $pictureFileName = $fileUploader->upload($pictureFile);
+                $itemCollection->setPicture($pictureFileName);
+            }
+            
             $this->em->persist($itemCollection);
             $this->em->flush();
 

@@ -28,6 +28,9 @@ class ItemCollection
     #[ORM\JoinColumn(nullable: false)]
     private $creator;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $picture;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -100,6 +103,18 @@ class ItemCollection
     public function setCreator(?User $creator): self
     {
         $this->creator = $creator;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

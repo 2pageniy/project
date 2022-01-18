@@ -19,6 +19,12 @@
         {{ form_widget(createCollectionForm.topic, {'attr': {'class': 'form-control'}}) }}
     </div>
 
+    <div class="mb-3">
+        {{ form_label(createCollectionForm.picture) }}<br>
+        {{ form_errors(createCollectionForm.picture) }}
+        {{ form_widget(createCollectionForm.picture, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
     <input type="submit" class="btn btn-success form-control" name="submit" value="Submit">
 
     {{ form_end(createCollectionForm) }}
