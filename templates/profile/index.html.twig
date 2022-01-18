@@ -1,16 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Profile{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .collection {
+            max-width: 1050px;
+            margin: 0 auto;
+            margin-top: 70px;
+        }
 
+        .collection-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .collection-list-item {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        .collection-list-item h3 {
+            background: hsl(0, 0%, 83%);
+            font-size: 17px;
+            margin: 0;
+            padding: 15px 0;
+        }
+
+        .collection-list-item p:nth-child(2) {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        @media (max-width: 800px) {
+            .collection-list {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(3, 1fr);
+            }
+
+            .collection {
+                max-width: 290px;
+            }
+        }
+    </style>
+{% endblock %}
 {% block body %}
-{% include 'header.html.twig' %}
-
-
-   {% for itemCollection in itemCollection %}
-      <div style="display:flex">
-         <p style="padding-right: 10px;">{{ itemCollection.name }}</p>
-         <p>{{ itemCollection.topic }}</p>
-      </div>
-   {% endfor %}
+    {% include 'header.html.twig' %}
+<section class="collection">
+    <ul class="collection-list">
+        {% for itemCollection in itemCollection %}
+            <li class="collection-list-item">
+                <h3>{{ itemCollection.name }}</h3>
+                <img src="{{ asset('images/Cars.jpg') }}" alt="Cars" width="300">
+                <p>{{ itemCollection.topic }}</p>
+                <a href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 
 {% endblock %}
