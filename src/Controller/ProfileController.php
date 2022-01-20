@@ -10,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
-    public function index(ManagerRegistry $doctrine): Response
+    #[Route('/id{id}', name: 'app_profile')]
+    public function index(ManagerRegistry $doctrine, int $id): Response
     {
         $repository = $doctrine->getRepository(ItemCollection::class);
-        $creator = $this->getUser()->getId();
+        //$creator = $this->getUser()->getId();
         $itemCollection = $repository->findBy([
-            'creator' => $creator,
+            'creator' => $id,
         ]);
 
 
