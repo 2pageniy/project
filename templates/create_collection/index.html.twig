@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Create collection!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
 
+{% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
-
+<section class="form-main">
     {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
 
     <div class="mb-3">
@@ -20,6 +23,12 @@
     </div>
 
     <div class="mb-3">
+        {{ form_label(createCollectionForm.description) }}<br>
+        {{ form_errors(createCollectionForm.description) }}
+        {{ form_widget(createCollectionForm.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="mb-3">
         {{ form_label(createCollectionForm.picture) }}<br>
         {{ form_errors(createCollectionForm.picture) }}
         {{ form_widget(createCollectionForm.picture, {'attr': {'class': 'form-control'}}) }}
@@ -28,4 +37,6 @@
     <input type="submit" class="btn btn-success form-control" name="submit" value="Submit">
 
     {{ form_end(createCollectionForm) }}
+
+</section>
 {% endblock %}

@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Profile{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
@@ -7,16 +6,19 @@
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
-<section class="collection">
+<section class="collections">
     <ul class="collection-list">
-        {% for itemCollection in itemCollection %}
-            <li class="collection-list-item">
-                <h3>{{ itemCollection.name }}</h3>
+        {% for itemCollection in itemCollections %}
+            <li class="collection-list-item card">
                 {% if itemCollection.picture %}
-                    <img src="{{ asset('uploads/pictures/' ~ itemCollection.picture) }}" width="300" alt="image collection">
+                    <img src="{{ asset('uploads/pictures/' ~ itemCollection.picture) }}" class="card-img-top" width="300" alt="image collection">
                 {% endif %}
-                <p>{{ itemCollection.topic }}</p>
-                <a href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">Edit</a>
+                <div class="card-body">
+                    <a href="#" class="collection-link"><h5 class="card-title mb-2">{{ itemCollection.name }}</h5></a>
+                    <h6 class="card-subtitle mb-2">{{ itemCollection.topic }}</h6>
+                    <p class="card-text">{{ itemCollection.description }}</p>
+                <a href="{{ path('app_edit_collection', {id: itemCollection.id}) }}" class="collection-setting-link"></a>
+                </div>
             </li>
         {% endfor %}
     </ul>

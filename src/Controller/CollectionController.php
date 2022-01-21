@@ -55,7 +55,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route('/profile/edit/{id}', name: 'app_edit_collection')]
+    #[Route('/edit/{id}', name: 'app_edit_collection')]
     public function edit(int $id, Request $request): Response
     {
 
@@ -82,4 +82,5 @@ class CollectionController extends AbstractController
             'editCollectionForm' => $form->createView(),
         ]);
     }
+
 }

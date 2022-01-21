@@ -1,10 +1,22 @@
-.collection {
-    max-width: 1050px;
+body {
+    background-image: linear-gradient(
+            115deg,
+            rgba(58, 58, 158, 0.8),
+            rgba(136, 136, 206, 0.7)
+    ), url('../images/bg-profile.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.collections {
+    max-width: 850px;
     margin: 0 auto;
     margin-top: 70px;
 }
 
 .collection-list {
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -14,15 +26,52 @@
 }
 
 .collection-list-item {
+    color: white;
+    position: relative;
+    background: #0732de;
     text-align: center;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
-.collection-list-item h3 {
-    background: hsl(0, 0%, 83%);
+.collection-list-item .card-body h5 {
+    background: #cd5700;
     font-size: 17px;
     margin: 0;
     padding: 15px 0;
+    border-radius: 5px;
+}
+
+.collection-link {
+    color: white;
+    text-decoration: none;
+}
+
+.collection-link:hover {
+    color: black;
+}
+
+.collection-link:active {
+    color: #313131;
+}
+
+.card .card-body p {
+    display: block;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    text-align: left;
+    padding: 5px;
+}
+
+.collection-setting-link::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    background: url('../images/setting.png') no-repeat;
+    background-size: 15px;
 }
 
 
@@ -31,7 +80,7 @@
         grid-template-columns: 1fr;
     }
 
-    .collection {
+    .collections {
         max-width: 290px;
     }
 }

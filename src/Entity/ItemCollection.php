@@ -31,6 +31,9 @@ class ItemCollection
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $picture;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $description;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -115,6 +118,18 @@ class ItemCollection
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

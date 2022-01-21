@@ -15,14 +15,14 @@ class ProfileController extends AbstractController
     {
         $repository = $doctrine->getRepository(ItemCollection::class);
         //$creator = $this->getUser()->getId();
-        $itemCollection = $repository->findBy([
+        $itemCollections = $repository->findBy([
             'creator' => $id,
         ]);
 
 
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
-            'itemCollection' => $itemCollection,
+            'itemCollections' => $itemCollections,
         ]);
 
     }
