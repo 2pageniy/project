@@ -6,15 +6,15 @@ body {
 }
 
 .collections {
-    max-width: 850px;
+    max-width: 1050px;
     margin: 70px auto;
 }
 
 .collection-list {
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     align-items: start;
     padding: 0;
     margin: 0;
@@ -52,7 +52,7 @@ body {
     color: #313131;
 }
 
-.description {
+.card-body p {
     background: snow;
     color: black;
 
@@ -76,4 +76,16 @@ body {
     height: 15px;
     background: url('../images/setting.png') no-repeat;
     background-size: 15px;
+}
+
+@media (max-width: 950px) {
+    .collection-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .collection-list {
+        grid-template-columns: 1fr;
+    }
 }

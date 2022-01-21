@@ -25,9 +25,13 @@ class Item
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'items')]
     private $tags;
 
+    #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class)]
+    private $comments;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,6 +83,36 @@ class Item
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getItem() === $this) {
+                $comment->setItem(null);
+            }
+        }
 
         return $this;
     }
