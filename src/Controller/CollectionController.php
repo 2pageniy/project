@@ -47,7 +47,7 @@ class CollectionController extends AbstractController
             $this->em->persist($itemCollection);
             $this->em->flush();
 
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_main');
         }
 
         return $this->render('create_collection/index.html.twig', [
@@ -75,7 +75,7 @@ class CollectionController extends AbstractController
             $this->em->persist($item);
             $this->em->flush();
 
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('app_main');
         }
 
         return $this->render('edit_collection/index.html.twig', [

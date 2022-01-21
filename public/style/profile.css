@@ -1,43 +1,41 @@
 body {
-    background-image: linear-gradient(
-            115deg,
-            rgba(58, 58, 158, 0.8),
-            rgba(136, 136, 206, 0.7)
-    ), url('../images/bg-profile.jpeg');
-    background-size: cover;
-    background-position: center;
+    box-sizing: content-box;
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 .collections {
     max-width: 850px;
-    margin: 0 auto;
-    margin-top: 70px;
+    margin: 70px auto;
 }
 
 .collection-list {
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
 .collection-list-item {
+    margin: 0 auto;
+    max-width: 550px;
     color: white;
     position: relative;
-    background: #0732de;
-    text-align: center;
+
     border: 2px solid black;
 }
 
 .collection-list-item .card-body h5 {
-    background: #cd5700;
+    background: #FF6600;
     font-size: 17px;
+    text-align: center;
     margin: 0;
-    padding: 15px 0;
+    padding: 10px 0;
     border-radius: 5px;
 }
 
@@ -52,6 +50,12 @@ body {
 
 .collection-link:active {
     color: #313131;
+}
+
+.description {
+    background: snow;
+    color: black;
+
 }
 
 .card .card-body p {
@@ -72,15 +76,4 @@ body {
     height: 15px;
     background: url('../images/setting.png') no-repeat;
     background-size: 15px;
-}
-
-
-@media (max-width: 800px) {
-    .collection-list {
-        grid-template-columns: 1fr;
-    }
-
-    .collections {
-        max-width: 290px;
-    }
 }
