@@ -5,17 +5,20 @@
     <link href="{{ asset('style/profile.css') }}" rel="stylesheet"/>
 {% endblock %}
 {% block body %}
+
     {% include 'header.html.twig' %}
     <section class="collections">
         <ul class="collection-list">
+
             {% for itemCollection in itemCollections %}
                 <li class="collection-list-item card mb-3"  style="width: 18rem; background: url({{ asset('uploads/pictures/' ~ itemCollection.picture) }}) #0732de no-repeat; background-size: 100% 100%;">
                     <div class="card-body">
                         <a href="#" class="collection-link"><h5
                                     class="card-title mb-2">{{ itemCollection.name }}</h5>
                         </a>
+
                         <h6 class="card-subtitle mb-2">{{ itemCollection.topic }}</h6>
-                        {{ itemCollection.description|markdown|html_purifier  }}
+                        {{ itemCollection.description|escape('html')|markdown }}
                         {% if app.user.id == creatorId or app.user.roles[0] == 'ROLE_ADMIN' %}
                             <a href="{{ path('app_edit_collection', {id: itemCollection.id}) }}"
                                class="collection-setting-link"></a>
@@ -25,5 +28,4 @@
             {% endfor %}
         </ul>
     </section>
-
 {% endblock %}

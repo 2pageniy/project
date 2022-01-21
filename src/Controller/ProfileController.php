@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\ItemCollection;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
