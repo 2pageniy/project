@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit collection{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+
+    <ul class="nav nav-pills nav-justified" style="max-width: 600px; margin: 0 auto;">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">Edit collection</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Create new item</a>
+        </li>
+    </ul>
+
+    {{ form_start(editCollectionForm, {'attr': {'class': 'form'}}) }}
+    <div class="mb-3">
+        {{ form_label(editCollectionForm.name) }}<br>
+        {{ form_errors(editCollectionForm.name, {'attr': {'class': 'errors'}}) }}
+        {{ form_widget(editCollectionForm.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <input type="submit" class="btn btn-success form-control" name="submit" value="Submit">
+
+    {{ form_end(editCollectionForm) }}
+{% endblock %}

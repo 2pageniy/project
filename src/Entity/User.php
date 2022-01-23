@@ -40,6 +40,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->itemCollections = new ArrayCollection();
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,4 +170,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }
+
+

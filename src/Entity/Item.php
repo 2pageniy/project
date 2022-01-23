@@ -6,10 +6,12 @@ use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 class Item
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -27,6 +29,14 @@ class Item
 
     #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class)]
     private $comments;
+
+    /**
+     * @var \DateTime
+     */
+    #[Gedmo\Timestampable(on: 'create')]
+    #[ORM\Column(name: 'created_at', type: 'datetime')]
+    private $created;
+
 
     public function __construct()
     {
@@ -116,4 +126,25 @@ class Item
 
         return $this;
     }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+
+
+    /**
+     * Gets triggered only on insert
+     *
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
+
+
+
 }

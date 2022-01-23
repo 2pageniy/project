@@ -7,21 +7,12 @@
 {% endblock %}
 {% block body %}
     <section class="form-main">
-        <p><a href="{{ path('app_main') }}"><img src="{{ asset('images/book.png') }}" alt="logo" width="60"/></a></p>
+        <p><a href="{{ path('app_main') }}"><img src="{{ asset('images/logo.png') }}" alt="logo" width="60"/></a></p>
         <h1>Sign up</h1>
         {% if error %}
             <p class="alert alert-danger">{{ error.messageKey|replace({"Invalid credentials." : "Invalid username or password."})|trans(error.messageData, 'security') }}</p>
         {% endif %}
         <form method="post" class="form form-registration">
-
-            {#  logged user
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                </div>
-            {% endif %}
-            #}
-
             <div class="mb-3">
                 <label for="inputUsername">Username or email address</label>
                 <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
