@@ -132,19 +132,9 @@ class Item
         return $this->created;
     }
 
-
-
-    /**
-     * Gets triggered only on insert
-     *
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
+    public function setCreated()
     {
         $this->created = new \DateTime();
-        $this->updated = new \DateTime();
     }
-
-
 
 }

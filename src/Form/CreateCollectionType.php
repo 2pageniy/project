@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -26,9 +27,17 @@ class CreateCollectionType extends AbstractType
                     'Bricks with brands' => 'Bricks with brands',
                     'Books' => 'Books',
                     'Alcohol' => 'Alcohol',
+                    'Cars' => 'Cars',
+                    'Lamps' => 'Lamps',
                 ],
             ])
-            ->add('name')
+            ->add('name', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a name',
+                    ]),
+                ],
+            ])
             ->add('description', TextareaType::class, [
                 'constraints' => [
                     new NotBlank([

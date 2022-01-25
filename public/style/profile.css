@@ -1,3 +1,4 @@
+
 body {
     box-sizing: content-box;
     background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
@@ -7,11 +8,10 @@ body {
 
 .collections {
     max-width: 1050px;
-    margin: 70px auto;
+    margin: 45px auto;
 }
 
 .collection-list {
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -19,7 +19,6 @@ body {
     padding: 0;
     margin: 0;
     list-style: none;
-
 }
 
 .collection-list-item {
@@ -84,6 +83,34 @@ body {
     background-size: 15px;
 }
 
+.create-collection-link {
+    display: block;
+    max-width: 205px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.create-btn {
+    background-color: #8ddad5;
+    border: 2px solid black;
+    margin-left: auto;
+}
+
+.create-btn:hover {
+    background-color: #00cdac;
+    border: 2px solid black;
+}
+
+.create-btn:focus {
+    box-shadow: none;
+}
+
+.create-btn:active {
+    background-color: #00705c;
+    color: white;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 950px) {
     .collection-list {
         grid-template-columns: 1fr 1fr;
@@ -95,3 +122,4 @@ body {
         grid-template-columns: 1fr;
     }
 }
+

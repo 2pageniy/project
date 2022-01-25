@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Item;
 use App\Entity\ItemCollection;
+use App\Entity\User;
 use App\Form\CreateCollectionType;
-use App\Form\CreateItemType;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,41 +17,56 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectionController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $em
+        private EntityManagerInterface $em,
     )
     { }
 
-    #[Route('/create/collection', name: 'app_create_collection')]
-    public function create(Request $request, FileUploader $fileUploader): Response
+    #[Route('/collection/{id}', name: 'app_collection')]
+    public function index(ManagerRegistry $doctrine, int $id): Response
+    {
+
+        $itemCollection = $this->em->find(ItemCollection::class, $id);
+
+        $repository = $doctrine->getRepository(Item::class);
+        $items = $repository->findBy([
+            'collection' => $id,
+        ]);
+
+        return $this->render('collection/index.html.twig', [
+            'itemCollection' => $itemCollection,
+            'items' => $items,
+        ]);
+    }
+
+    #[Route('/create/collection/{id}', name: 'app_create_collection')]
+    public function create(Request $request, FileUploader $fileUploader, int $id): Response
     {
         $itemCollection = new ItemCollection();
         $form = $this->createForm(CreateCollectionType::class, $itemCollection);
-
-        //$user = $this->em->find(User::class, 2);
-        $user = $this->getUser();
+        $user = $this->em->find(User::class, $id);
+        $loggedUser = $this->getUser();
 
         if(!$user) {
             return $this->redirectToRoute('app_login');
+        } else if($loggedUser->getId() !== $id && $loggedUser->getRoles()[0] !== 'ROLE_ADMIN' ) {
+            return $this->redirectToRoute('app_profile', ['id' => $loggedUser->getId()]);
         }
 
         $itemCollection->setCreator($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $pictureFile = $form->get('picture')->getData();
             if ($pictureFile) {
                 $pictureFileName = $fileUploader->upload($pictureFile);
                 $itemCollection->setPicture($pictureFileName);
             }
-            
             $this->em->persist($itemCollection);
             $this->em->flush();
-
             return $this->redirectToRoute('app_main');
         }
 
-        return $this->render('create_collection/index.html.twig', [
+        return $this->render('collection/create_collection.html.twig', [
             'createCollectionForm' => $form->createView(),
         ]);
     }
@@ -58,79 +74,44 @@ class CollectionController extends AbstractController
     #[Route('/edit/collection/{id}', name: 'app_edit_collection')]
     public function edit(int $id, Request $request, FileUploader $fileUploader): Response
     {
-
-        $itemCollection = $this->em->find(ItemCollection::class, $id);
-        if(!$itemCollection) {
-            return $this->redirectToRoute('app_main');
-        }
-
-        $form = $this->createForm(CreateCollectionType::class, $itemCollection);
         $user = $this->getUser();
+        $itemCollection = $this->em->find(ItemCollection::class, $id);
 
-        if(!$user) {
+        if(!$user)
+        {
             return $this->redirectToRoute('app_login');
         }
+        else if($itemCollection) {
+            if ($user !== $itemCollection->getCreator() && $user->getRoles()[0] !== 'ROLE_ADMIN')
+            {
+                return $this->redirectToRoute('app_profile', ['id' => $user->getId()]);
+            }
+        } else return $this->redirectToRoute('app_main');
 
+        $form = $this->createForm(CreateCollectionType::class, $itemCollection);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $itemCollection->setName($form->get('name')->getData());
             $itemCollection->setTopic($form->get('topic')->getData());
             $itemCollection->setDescription($form->get('description')->getData());
-
             $pictureFile = $form->get('picture')->getData();
             if ($pictureFile) {
                 $pictureFileName = $fileUploader->upload($pictureFile);
                 $itemCollection->setPicture($pictureFileName);
             }
 
-
-            $this->em->persist($itemCollection);
             $this->em->flush();
-
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_profile', ['id' => $user->getId()]);
         }
 
-
-
-        return $this->render('edit_collection/index.html.twig', [
+        return $this->render('collection/edit_collection.html.twig', [
             'itemCollection' => $itemCollection,
             'createCollectionForm' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
-    #[Route('/create/item/{id}', name: 'app_create_item')]
-    public function createItem(int $id, Request $request): Response
-    {
 
-        $user = $this->getUser();
-
-
-        $itemCollection = $this->em->find(ItemCollection::class, $id);
-        if(!$itemCollection) {
-            return $this->redirectToRoute('app_main');
-        }
-
-        $item = new Item();
-        $form = $this->createForm(CreateItemType::class, $item);
-        $form->handleRequest($request);
-
-        $item->setCollection($itemCollection);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $item->onPrePersist();
-            $this->em->persist($item);
-            $this->em->flush();
-
-            return $this->redirectToRoute('app_main');
-        }
-
-        return $this->render('create_item/index.html.twig', [
-            'editCollectionForm' => $form->createView(),
-            'itemCollection' => $itemCollection,
-        ]);
-    }
 
 }
