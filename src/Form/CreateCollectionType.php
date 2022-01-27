@@ -19,6 +19,8 @@ class CreateCollectionType extends AbstractType
     {
         $builder
             ->add('topic', ChoiceType::class, [
+                'required' => true,
+                'placeholder' => 'Please select a topic',
                 'choices'  => [
                     'Coins' => 'Coins',
                     'Stamps' => 'Stamps',

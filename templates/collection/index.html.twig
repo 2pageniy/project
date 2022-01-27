@@ -7,9 +7,11 @@
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
-    <a class="create-item-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">
-        <button class="btn create-btn">Create new item</button>
-    </a>
+    {% if app.user == itemCollection.creator or app.user.roles[0] == 'ROLE_ADMIN' %}
+        <a class="create-item-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">
+            <button class="btn create-btn">Create new item</button>
+        </a>
+    {% endif %}
     <div class="collection-wrapper">
         {% if itemCollection.picture %}
             <figure class="collection-picture"><img src="{{ asset('uploads/pictures/' ~ itemCollection.picture) }}"
@@ -17,9 +19,9 @@
         {% endif %}
 
         <ul class="collection-list" style="margin-bottom: -10px;">
-            <li class="collection-list-item">Name collection: {{ itemCollection.name }}</li>
+            <li class="collection-list-item"><em>Name collection</em>: {{ itemCollection.name }}</li>
             <li class="collection-list-item">
-                Description: {{ itemCollection.description|striptags('<b><i><strong><em>')|markdown }}</li>
+                <em>Description</em>: {{ itemCollection.description|striptags('<b><i><strong><em>')|markdown }}</li>
         </ul>
     </div>
 
@@ -40,7 +42,7 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.name }}</td>
+                    <td width="400">{% for tag in item.tags %}<a href="#" style="text-decoration: none;">#{{ tag.name }}</a> {% endfor %}</td>
                     <td><a href="#">edit</a> <a href="#">view</a></td>
                 </tr>
             {% endfor %}

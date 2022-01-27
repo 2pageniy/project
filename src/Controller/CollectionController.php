@@ -27,10 +27,13 @@ class CollectionController extends AbstractController
 
         $itemCollection = $this->em->find(ItemCollection::class, $id);
 
+        if(!$itemCollection) {
+            return $this->redirectToRoute('app_main');
+        }
+
+
         $repository = $doctrine->getRepository(Item::class);
-        $items = $repository->findBy([
-            'collection' => $id,
-        ]);
+        $items = $repository->findAllTagsOrderedByNewest($id);
 
         return $this->render('collection/index.html.twig', [
             'itemCollection' => $itemCollection,

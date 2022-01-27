@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit collection{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/collection.css') }}">
+{% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
 
@@ -14,15 +17,20 @@
         </li>
     </ul>
 
-    {{ form_start(editCollectionForm, {'attr': {'class': 'form'}}) }}
+    {{ form_start(editCollectionForm, {'attr': {'class': 'form form-main form-collection'}}) }}
     <div class="mb-3">
         {{ form_label(editCollectionForm.name) }}<br>
         {{ form_errors(editCollectionForm.name, {'attr': {'class': 'errors'}}) }}
         {{ form_widget(editCollectionForm.name, {'attr': {'class': 'form-control'}}) }}
     </div>
 
+    <div class="mb-3">
+        {{ form_label(editCollectionForm.tags) }}<br>
+        {{ form_errors(editCollectionForm.tags, {'attr': {'class': 'errors'}}) }}
+        {{ form_widget(editCollectionForm.tags, {'attr': {'class': 'form-control'}}) }}
+    </div>
 
-    <input type="submit" class="btn btn-success form-control" name="submit" value="Submit">
+    <input type="submit" class="btn btn-success form-control" name="submit" value="Create">
 
     {{ form_end(editCollectionForm) }}
 {% endblock %}

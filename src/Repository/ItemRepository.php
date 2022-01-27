@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Item;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,22 +20,25 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
-    // /**
-    //  * @return Item[] Returns an array of Item objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Item[] Returns an array of Item objects
+      */
+    public function findAllTagsOrderedByNewest($id, QueryBuilder $qb = null)
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('i.collection = ' . $id)
+            ->leftJoin('i.tags', 'tag')
+            ->addSelect('tag')
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
+
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    {
+        return $qb ?: $this->createQueryBuilder('i');
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Item

@@ -1,0 +1,12 @@
+body {
+    background: linear-gradient(3deg, #e6d16c, #16014c) no-repeat;
+    min-height: 100vh;
+}
+.form-collection {
+    max-width: 600px;
+    border: 2px solid green;
+    border-radius: 5px;
+    background: white;
+    padding: 15px;
+    margin: 40px auto;
+}

@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Edit collection{% endblock %}
-
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/collection.css') }}">
+{% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
 
@@ -13,8 +16,9 @@
             <a class="nav-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">Create new item</a>
         </li>
     </ul>
-
-<p>Edit collection {{ itemCollection.name }}</p>
+<section class="form form-main form-collection">
+<p>Edit collection: {{ itemCollection.name }}</p>
+    <hr>
     {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
 
     <div class="mb-3">
@@ -44,5 +48,7 @@
     <input type="submit" class="btn btn-success form-control" name="Save" value="Save">
 
     {{ form_end(createCollectionForm) }}
+
+</section>
 
 {% endblock %}
