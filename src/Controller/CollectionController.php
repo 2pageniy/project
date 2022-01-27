@@ -19,7 +19,8 @@ class CollectionController extends AbstractController
     public function __construct(
         private EntityManagerInterface $em,
     )
-    { }
+    {
+    }
 
     #[Route('/collection/{id}', name: 'app_collection')]
     public function index(ManagerRegistry $doctrine, int $id): Response
@@ -27,7 +28,7 @@ class CollectionController extends AbstractController
 
         $itemCollection = $this->em->find(ItemCollection::class, $id);
 
-        if(!$itemCollection) {
+        if (!$itemCollection) {
             return $this->redirectToRoute('app_main');
         }
 
@@ -49,9 +50,9 @@ class CollectionController extends AbstractController
         $user = $this->em->find(User::class, $id);
         $loggedUser = $this->getUser();
 
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
-        } else if($loggedUser->getId() !== $id && $loggedUser->getRoles()[0] !== 'ROLE_ADMIN' ) {
+        } else if ($loggedUser->getId() !== $id && $loggedUser->getRoles()[0] !== 'ROLE_ADMIN') {
             return $this->redirectToRoute('app_profile', ['id' => $loggedUser->getId()]);
         }
 
@@ -80,13 +81,10 @@ class CollectionController extends AbstractController
         $user = $this->getUser();
         $itemCollection = $this->em->find(ItemCollection::class, $id);
 
-        if(!$user)
-        {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
-        }
-        else if($itemCollection) {
-            if ($user !== $itemCollection->getCreator() && $user->getRoles()[0] !== 'ROLE_ADMIN')
-            {
+        } else if ($itemCollection) {
+            if ($user !== $itemCollection->getCreator() && $user->getRoles()[0] !== 'ROLE_ADMIN') {
                 return $this->redirectToRoute('app_profile', ['id' => $user->getId()]);
             }
         } else return $this->redirectToRoute('app_main');
@@ -95,13 +93,21 @@ class CollectionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $itemCollection->setName($form->get('name')->getData());
-            $itemCollection->setTopic($form->get('topic')->getData());
-            $itemCollection->setDescription($form->get('description')->getData());
-            $pictureFile = $form->get('picture')->getData();
-            if ($pictureFile) {
-                $pictureFileName = $fileUploader->upload($pictureFile);
-                $itemCollection->setPicture($pictureFileName);
+
+            if ($form->getClickedButton() && 'save' === $form->getClickedButton()->getName()) {
+                $itemCollection->setName($form->get('name')->getData());
+                $itemCollection->setTopic($form->get('topic')->getData());
+                $itemCollection->setDescription($form->get('description')->getData());
+                $pictureFile = $form->get('picture')->getData();
+                if ($pictureFile) {
+                    $pictureFileName = $fileUploader->upload($pictureFile);
+                    $itemCollection->setPicture($pictureFileName);
+                }
+
+
+            }
+            if ($form->getClickedButton() && 'delete' === $form->getClickedButton()->getName()) {
+                $this->em->remove($itemCollection);
             }
 
             $this->em->flush();
@@ -114,7 +120,6 @@ class CollectionController extends AbstractController
             'user' => $user,
         ]);
     }
-
 
 
 }

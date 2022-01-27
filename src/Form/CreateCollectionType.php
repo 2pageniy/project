@@ -6,11 +6,13 @@ use App\Entity\ItemCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CreateCollectionType extends AbstractType
@@ -45,6 +47,10 @@ class CreateCollectionType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a description',
                     ]),
+                    new Length([
+                        'max' => 210,
+                        'maxMessage' => 'Your description should be no more than {{ limit }} characters',
+                    ]),
                 ],
             ])
             ->add('picture', FileType::class, [
@@ -60,6 +66,13 @@ class CreateCollectionType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image',
                     ])
                 ],
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Save',
+            ])
+            ->add('delete', SubmitType::class, [
+                'label' => 'Delete',
+
             ])
         ;
     }

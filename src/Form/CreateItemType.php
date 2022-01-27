@@ -18,13 +18,9 @@ class CreateItemType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true,
             ])
-            ->add('tags', EntityType::class, [
-                'class' => Tag::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'attr' => [
-                    'class' => 'js-example-basic-multiple form-control',
-                ]
+            ->add('tags', TextType::class, [
+                'mapped' => false,
+                'required' => false,
             ])
         ;
     }

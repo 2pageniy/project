@@ -18,7 +18,7 @@
                                                     alt="image collection" width="170"></figure>
         {% endif %}
 
-        <ul class="collection-list" style="margin-bottom: -10px;">
+        <ul class="collection-list">
             <li class="collection-list-item"><em>Name collection</em>: {{ itemCollection.name }}</li>
             <li class="collection-list-item">
                 <em>Description</em>: {{ itemCollection.description|striptags('<b><i><strong><em>')|markdown }}</li>
@@ -27,13 +27,13 @@
 
 
     {% if items|length != 0 %}
-        <table class="table table-striped table-items">
+        <table class="table table-striped table-items" id="grid">
             <caption>{{ itemCollection.topic }}</caption>
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Tags</th>
+                <th scope="col" data-type="number">#</th>
+                <th scope="col" data-type="string">Name</th>
+                <th scope="col" data-type="string">Tags</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -42,8 +42,16 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ item.name }}</td>
-                    <td width="400">{% for tag in item.tags %}<a href="#" style="text-decoration: none;">#{{ tag.name }}</a> {% endfor %}</td>
-                    <td><a href="#">edit</a> <a href="#">view</a></td>
+                    <td width="400">{% for tag in item.tags %}<a href="#" style="text-decoration: none;">
+                            #{{ tag.name }}</a> {% endfor %}</td>
+                    <td>
+                        <a href="">
+                            <button class="btn btn-success">Edit</button>
+                        </a>
+                        <a href="{{ path('app_item', {id: item.id}) }}">
+                            <button class="btn btn-info">View</button>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -51,4 +59,34 @@
     {% else %}
         <p style="text-align: center;">Items not found :(</p>
     {% endif %}
+    <script>
+        grid.onclick = function (e) {
+            if (e.target.tagName != 'TH') return;
+            let th = e.target;
+            sortGrid(th.cellIndex, th.dataset.type);
+        };
+
+        function sortGrid(colNum, type) {
+            let tbody = grid.querySelector('tbody');
+            let rowsArray = Array.from(tbody.rows);
+
+            // compare(a, b) сравнивает две строки, нужен для сортировки
+            let compare;
+
+            switch (type) {
+                case 'number':
+                    compare = function (rowA, rowB) {
+                        return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
+                    };
+                    break;
+                case 'string':
+                    compare = function (rowA, rowB) {
+                        return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+                    };
+                    break;
+            }
+            rowsArray.sort(compare);
+            tbody.append(...rowsArray);
+        }
+    </script>
 {% endblock %}

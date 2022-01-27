@@ -10,6 +10,13 @@ body {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+th {
+    cursor: pointer;
+}
+th:hover {
+    background: lightgray;
+}
+
 caption {
     caption-side: top;
     font-size: 16px;
@@ -68,6 +75,7 @@ caption {
 
 .collection-picture {
     display: inline-block;
+    vertical-align: top;
 }
 
 
