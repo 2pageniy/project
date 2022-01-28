@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Item;
 use App\Entity\ItemCollection;
 use App\Entity\Tag;
+use App\Form\CreateCommentType;
 use App\Form\CreateItemType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,15 +24,32 @@ class ItemController extends AbstractController
     }
 
     #[Route('/item/{id}', name: 'app_item')]
-    public function index(ManagerRegistry $doctrine, int $id): Response
+    public function index(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $repository = $doctrine->getRepository(Item::class);
         $item = $repository->findOneBy([
             'id' => $id,
         ]);
 
+
+        $comment = new Comment();
+        $form = $this->createForm(CreateCommentType::class, $comment);
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setAuthorName($user->getUsername());
+            $comment->setCreated();
+            $comment->setItem($item);
+
+            $this->em->persist($comment);
+            $this->em->flush();
+        }
+
         return $this->render('item/index.html.twig', [
             'item' => $item,
+            'createCommentForm' => $form->createView(),
         ]);
     }
 
