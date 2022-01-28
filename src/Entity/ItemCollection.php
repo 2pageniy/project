@@ -22,6 +22,7 @@ class ItemCollection
     private $topic;
 
     #[ORM\OneToMany(mappedBy: 'collection', targetEntity: Item::class, orphanRemoval: true)]
+    #[ORM\OrderBy(['created' => 'DESC'])]
     private $items;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'itemCollections')]

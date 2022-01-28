@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_e4c0edc76f146f5</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="pgkkw1qs4kqjawtl@kutnpvrhom7lki7u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com" uuid="c5eddf16-53e7-4124-a882-7fb06895aba5">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://kutnpvrhom7lki7u.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/pgkkw1qs4kqjawtl</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

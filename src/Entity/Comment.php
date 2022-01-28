@@ -4,12 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
-    use TimestampableEntity;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,7 +23,15 @@ class Comment
 
     #[ORM\ManyToOne(targetEntity: Item::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+
     private $item;
+
+    /**
+     * @var \DateTime
+     */
+    #[Gedmo\Timestampable(on: 'create')]
+    #[ORM\Column(name: 'created_at', type: 'datetime')]
+    private $created;
 
     public function getId(): ?int
     {
@@ -65,5 +72,15 @@ class Comment
         $this->item = $item;
 
         return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated()
+    {
+        $this->created = new \DateTime();
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log In!{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('style/auth.css') }}" rel="stylesheet"/>
@@ -8,7 +8,7 @@
 {% block body %}
     <section class="form-main">
         <p><a href="{{ path('app_main') }}"><img src="{{ asset('images/logo.png') }}" alt="logo" width="60"/></a></p>
-        <h1>Sign up</h1>
+        <h1>Sign in</h1>
         {% if error %}
             <p class="alert alert-danger">{{ error.messageKey|replace({"Invalid credentials." : "Invalid username or password."})|trans(error.messageData, 'security') }}</p>
         {% endif %}

@@ -78,7 +78,7 @@ class ItemController extends AbstractController
             return $this->redirectToRoute('app_collection', ['id' => $id]);
         }
 
-        return $this->render('create_item/index.html.twig', [
+        return $this->render('item/create_item.html.twig', [
             'editCollectionForm' => $form->createView(),
             'itemCollection' => $itemCollection,
             'tags' => $tags

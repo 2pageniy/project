@@ -45,12 +45,8 @@
                     <td width="400">{% for tag in item.tags %}<a href="#" style="text-decoration: none;">
                             #{{ tag.name }}</a> {% endfor %}</td>
                     <td>
-                        <a href="">
-                            <button class="btn btn-success">Edit</button>
-                        </a>
-                        <a href="{{ path('app_item', {id: item.id}) }}">
-                            <button class="btn btn-info">View</button>
-                        </a>
+                        <a href="#"><button class="btn btn-success">Edit</button></a>
+                        <a href="{{ path('app_item', {id: item.id}) }}"><button class="btn btn-info">View</button></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -70,7 +66,7 @@
             let tbody = grid.querySelector('tbody');
             let rowsArray = Array.from(tbody.rows);
 
-            // compare(a, b) сравнивает две строки, нужен для сортировки
+            // compares two strings, needed for sorting
             let compare;
 
             switch (type) {

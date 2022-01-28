@@ -28,6 +28,7 @@ class Item
     private $tags;
 
     #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class)]
+    #[ORM\OrderBy(['created' => 'DESC'])]
     private $comments;
 
     /**
