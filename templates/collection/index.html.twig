@@ -46,7 +46,7 @@
                             <a href="#" style="text-decoration: none;">#{{ tag.name }}</a> {% endfor %}</td>
                     <td>
                         {% if app.user == itemCollection.creator or app.user.roles[0] == 'ROLE_ADMIN' %}
-                            <a href="#"><button class="btn btn-success">Edit</button></a>
+                            <a href="{{ path('app_edit_item', {'id': item.id}) }}"><button class="btn btn-success">Edit</button></a>
                         {% endif %}
                         <a href="{{ path('app_item', {id: item.id}) }}"><button class="btn btn-info">View</button></a>
                     </td>

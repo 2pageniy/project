@@ -35,8 +35,8 @@
             {{ form_widget(createCollectionForm.picture, {'attr': {'class': 'form-control'}}) }}
         </div>
 
-        {{ form_widget(createCollectionForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
-        {{ form_widget(createCollectionForm.delete, {'attr': {'class': 'btn btn-danger form-control  visually-hidden'}}) }}
+        {{ form_widget(createCollectionForm.save, {'attr': {'class': 'btn btn-success form-control'}, 'label': 'Submit'}) }}
+        {{ form_widget(createCollectionForm.delete, {'attr': {'class': 'btn btn-danger form-control  visually-hidden disabled'}}) }}
 
         {{ form_end(createCollectionForm) }}
 

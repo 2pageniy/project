@@ -17,24 +17,21 @@
         </li>
     </ul>
     <h1>Create new item</h1>
-    {{ form_start(editCollectionForm, {'attr': {'class': 'form form-main form-collection'}}) }}
+    {{ form_start(createItemForm, {'attr': {'class': 'form form-main form-collection'}}) }}
     <div class="mb-3">
-        {{ form_label(editCollectionForm.name) }}<br>
-        {{ form_errors(editCollectionForm.name, {'attr': {'class': 'errors'}}) }}
-        {{ form_widget(editCollectionForm.name, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(createItemForm.name) }}<br>
+        {{ form_errors(createItemForm.name, {'attr': {'class': 'errors'}}) }}
+        {{ form_widget(createItemForm.name, {'attr': {'class': 'form-control'}}) }}
     </div>
 
     <div class="mb-3">
-        {{ form_label(editCollectionForm.tags) }}<br>
-        {{ form_errors(editCollectionForm.tags, {'attr': {'class': 'errors'}}) }}
-        {{ form_widget(editCollectionForm.tags, {'attr': {'class': 'form-control', 'list': 'tags'}}) }}
-        <datalist id="tags">
-            {% for tag in tags %}
-            <option value="{{ tag.name }}">
-                {% endfor %}
-        </datalist>
+        {{ form_label(createItemForm.tags) }}<br>
+        {{ form_errors(createItemForm.tags, {'attr': {'class': 'errors'}}) }}
+        {{ form_widget(createItemForm.tags, {'attr': {'class': 'form-control'}}) }}
     </div>
 
-    <input type="submit" class="btn btn-success form-control" name="submit" value="Create">
-    {{ form_end(editCollectionForm) }}
+    {{ form_widget(createItemForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
+    {{ form_widget(createItemForm.delete, {'attr': {'class': 'btn btn-danger form-control disabled visually-hidden'}}) }}
+
+    {{ form_end(createItemForm) }}
 {% endblock %}

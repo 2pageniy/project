@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -80,18 +81,7 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dataTag = $form->get('tags')->getData();
-            if ($dataTag) {
-                $tag = $repository->findOneBy([
-                    'name' => $dataTag
-                ]);
-                if (!$tag) {
-                    $tag = new Tag();
-                    $tag->setName($dataTag);
-                }
-                $item->addTag($tag);
-                $this->em->persist($tag);
-            }
+            $this->tags($form, $repository, $item);
 
             $item->setCollection($itemCollection);
             $this->em->persist($item);
@@ -101,9 +91,69 @@ class ItemController extends AbstractController
         }
 
         return $this->render('item/create_item.html.twig', [
-            'editCollectionForm' => $form->createView(),
+            'createItemForm' => $form->createView(),
             'itemCollection' => $itemCollection,
-            'tags' => $tags
         ]);
+    }
+
+    #[Route('/edit/item/{id}', name: 'app_edit_item')]
+    public function edit(int $id, Request $request, ManagerRegistry $doctrine,): Response
+    {
+        $user = $this->getUser();
+        $item = $this->em->find(Item::class, $id);
+        $repository = $doctrine->getRepository(Tag::class);
+        if ($item) {
+            if ($user !== $item->getCollection()->getCreator() && $user->getRoles()[0] !== 'ROLE_ADMIN') {
+                return $this->redirectToRoute('app_profile', ['id' => $user->getId()]);
+            }
+        } else return $this->redirectToRoute('app_main');
+
+        $tags = $item->getTags();
+        $tagName = [];
+        foreach ($tags as $tag) {
+            $tagName[] = $tag->getName();
+        }
+        $form = $this->createForm(CreateItemType::class, $item);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->getClickedButton() && 'save' === $form->getClickedButton()->getName()) {
+                $item->setName($form->get('name')->getData());
+                $this->tags($form, $repository, $item);
+            }
+
+            if ($form->getClickedButton() && 'delete' === $form->getClickedButton()->getName()) {
+                $this->em->remove($item);
+            }
+
+            $this->em->flush();
+            return $this->redirectToRoute('app_collection', ['id' => $item->getCollection()->getId(),]);
+        }
+
+        return $this->render('item/edit_item.html.twig', [
+            'editItemForm' => $form->createView(),
+            'item' => $item,
+            'tagName' => (implode(" ", $tagName)),
+        ]);
+    }
+
+    public function tags($form, $repository, $item)
+    {
+        $dataTags = $form->get('tags')->getData();
+        if ($dataTags) {
+            $tags = explode(" ", $dataTags);
+            foreach ($tags as $tag) {
+                $tagName = $repository->findOneBy([
+                    'name' => $tag
+                ]);
+                if (!$tagName) {
+                    $tagName = new Tag();
+                    $tagName->setName($tag);
+                }
+                $item->addTag($tagName);
+                $this->em->persist($tagName);
+            }
+        }
     }
 }
