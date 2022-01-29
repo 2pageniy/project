@@ -16,9 +16,8 @@
             <a class="nav-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">Create new item</a>
         </li>
     </ul>
+    <h1>Edit collection: {{ itemCollection.name }}</h1>
     <section class="form form-main form-collection">
-        <p>Edit collection: {{ itemCollection.name }}</p>
-        <hr>
         {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
 
         <div class="mb-3">

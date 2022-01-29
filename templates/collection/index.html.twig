@@ -42,10 +42,12 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ item.name }}</td>
-                    <td width="400">{% for tag in item.tags %}<a href="#" style="text-decoration: none;">
-                            #{{ tag.name }}</a> {% endfor %}</td>
+                    <td width="400">{% for tag in item.tags %}
+                            <a href="#" style="text-decoration: none;">#{{ tag.name }}</a> {% endfor %}</td>
                     <td>
-                        <a href="#"><button class="btn btn-success">Edit</button></a>
+                        {% if app.user == itemCollection.creator or app.user.roles[0] == 'ROLE_ADMIN' %}
+                            <a href="#"><button class="btn btn-success">Edit</button></a>
+                        {% endif %}
                         <a href="{{ path('app_item', {id: item.id}) }}"><button class="btn btn-info">View</button></a>
                     </td>
                 </tr>

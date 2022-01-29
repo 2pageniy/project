@@ -1,5 +1,6 @@
 body {
     background: linear-gradient(90deg, #f598a8, #f6edb2);
+    max-width: 100%;
 }
 
 .table-items {
@@ -76,6 +77,50 @@ caption {
 .collection-picture {
     display: inline-block;
     vertical-align: top;
+}
+
+.item {
+    max-width: 850px;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.comments {
+    max-width: 750px;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.comments-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.comments-list-item {
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+    background-color: #CCCCFF;
+}
+
+.form-comment {
+    margin-bottom: 50px;
+}
+
+.commenter-name {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 

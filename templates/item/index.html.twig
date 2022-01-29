@@ -3,62 +3,57 @@
 {% block title %}View item{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-
+    <link rel="stylesheet" href="{{ asset('style/items.css') }}">
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
     <main>
         <h1>Item in collection: {{ item.collection.name }}</h1>
         <section class="item">
-            <h2>Item: {{ item.name }}</h2>
+            <h2>Item name: {{ item.name }}</h2>
             <p>
-                Item tags:
-                {% for tag in item.tags %}
-                    <a href="">#{{ tag.name }}</a>
-                {% endfor %}
+                {% if item.tags|length != 0 %}
+                    Item tags:
+                    {% for tag in item.tags %}
+                        <a href="">#{{ tag.name }}</a>
+                    {% endfor %}
+                {% else %}
+                    Item tags are missing
+                {% endif %}
             </p>
         </section>
         <hr>
-        <section>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3><i class="pr-3 fa fa-comment"></i>{{ item.comments|length }} Comments</h3>
-                    <hr>
-                    <div class="row mb-5">
-                        <div class="col-sm-12">
-                            <div class="comment-container d-inline-block pl-3 align-top">
-                                <span class="commenter-name">{{ app.user.username }}</span>
-                                <div class="form-group">
-                                {{ form_start(createCommentForm, {'attr': {'class': 'form'}}) }}
-                                <div class="mb-3">
-                                    {{ form_label(createCommentForm.content) }}<br>
-                                    {{ form_errors(createCommentForm.content, {'attr': {'class': 'errors'}}) }}
-                                    {{ form_widget(createCommentForm.content, {'attr': {'class': 'form-control'}}) }}
-                                </div>
-
-
-                                    <button type="submit" class="btn btn-info">Comment</button>
-                                {{ form_end(createCommentForm) }}
-                                </div>
-
-                            </div>
-                        </div>
+        <section class="comments">
+            <h3>{{ item.comments|length }} Comments</h3>
+            <hr>
+            {% if app.user %}
+                <div class="form-comment">
+                    <span class="commenter-name">{{ app.user.username }}</span>
+                    {{ form_start(createCommentForm, {'attr': {'class': 'form'}}) }}
+                    <div class="mb-3">
+                        {{ form_errors(createCommentForm.content, {'attr': {'class': 'errors'}}) }}
+                        {{ form_widget(createCommentForm.content, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    {% for comment in item.comments %}
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="comment-container d-inline-block pl-3 align-top">
-                                    <span class="commenter-name">{{ comment.authorName }}</span>
-                                    <small>about {{ comment.created|ago }}</small>
-                                    <br>
-                                    <span class="comment"> {{ comment.content }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <button type="submit" class="btn btn-info">Comment</button>
+                    {{ form_end(createCommentForm) }}
                 </div>
-            </div>
+                <ul class="comments-list">
+                    {% for comment in comments %}
+                        <li class="comments-list-item">
+                            <span class="commenter-name">{{ comment.author.getusername() }}</span>
+                            <small>about {{ comment.created|ago }}</small>
+                            <br>
+                            <span class="comment"> {{ comment.content }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
 
+            {% else %}
+                <p>
+                    To view the comments you need to <a href="{{ path('app_login') }}">log in</a> or <a
+                            href="{{ path('app_register') }}">register</a>
+                </p>
+            {% endif %}
         </section>
     </main>
 

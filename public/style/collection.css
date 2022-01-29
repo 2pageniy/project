@@ -2,6 +2,7 @@ body {
     background: linear-gradient(3deg, #e6d16c, #16014c) no-repeat;
     min-height: 100vh;
 }
+
 .form-collection {
     max-width: 600px;
     border: 2px solid green;
@@ -16,4 +17,10 @@ body {
     max-width: 150px;
     margin-top: 35px;
     margin-left: auto;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 22px;
 }

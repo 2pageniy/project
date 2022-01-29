@@ -31,6 +31,9 @@ class ItemController extends AbstractController
             'id' => $id,
         ]);
 
+        $repository = $doctrine->getRepository(Comment::class);
+        $comments = $repository->findByAllUsers($id);
+
 
         $comment = new Comment();
         $form = $this->createForm(CreateCommentType::class, $comment);
@@ -39,16 +42,18 @@ class ItemController extends AbstractController
         $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setAuthorName($user->getUsername());
-            $comment->setCreated();
+            $comment->setAuthor($user);
             $comment->setItem($item);
 
             $this->em->persist($comment);
             $this->em->flush();
+
+            return $this->redirect($this->generateUrl('app_item', ['id' => $id]));
         }
 
         return $this->render('item/index.html.twig', [
             'item' => $item,
+            'comments' => $comments,
             'createCommentForm' => $form->createView(),
         ]);
     }
@@ -77,7 +82,6 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dataTag = $form->get('tags')->getData();
             if ($dataTag) {
-
                 $tag = $repository->findOneBy([
                     'name' => $dataTag
                 ]);
@@ -90,7 +94,6 @@ class ItemController extends AbstractController
             }
 
             $item->setCollection($itemCollection);
-            $item->setCreated();
             $this->em->persist($item);
             $this->em->flush();
 

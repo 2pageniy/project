@@ -50,9 +50,7 @@ class CollectionController extends AbstractController
         $user = $this->em->find(User::class, $id);
         $loggedUser = $this->getUser();
 
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        } else if ($loggedUser->getId() !== $id && $loggedUser->getRoles()[0] !== 'ROLE_ADMIN') {
+        if ($loggedUser->getId() !== $id && $loggedUser->getRoles()[0] !== 'ROLE_ADMIN') {
             return $this->redirectToRoute('app_profile', ['id' => $loggedUser->getId()]);
         }
 
@@ -81,9 +79,7 @@ class CollectionController extends AbstractController
         $user = $this->getUser();
         $itemCollection = $this->em->find(ItemCollection::class, $id);
 
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        } else if ($itemCollection) {
+        if ($itemCollection) {
             if ($user !== $itemCollection->getCreator() && $user->getRoles()[0] !== 'ROLE_ADMIN') {
                 return $this->redirectToRoute('app_profile', ['id' => $user->getId()]);
             }
@@ -117,7 +113,6 @@ class CollectionController extends AbstractController
         return $this->render('collection/edit_collection.html.twig', [
             'itemCollection' => $itemCollection,
             'createCollectionForm' => $form->createView(),
-            'user' => $user,
         ]);
     }
 

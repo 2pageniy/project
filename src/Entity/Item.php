@@ -6,9 +6,12 @@ use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
+#[HasLifecycleCallbacks]
 class Item
 {
 
@@ -28,7 +31,7 @@ class Item
     private $tags;
 
     #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class)]
-    #[ORM\OrderBy(['created' => 'DESC'])]
+//    #[ORM\OrderBy(['created' => 'DESC'])]
     private $comments;
 
     /**
@@ -133,6 +136,7 @@ class Item
         return $this->created;
     }
 
+    #[PrePersist]
     public function setCreated()
     {
         $this->created = new \DateTime();

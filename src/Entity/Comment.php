@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[HasLifecycleCallbacks]
 class Comment
 {
 
@@ -14,9 +17,7 @@ class Comment
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $authorName;
+    
 
     #[ORM\Column(type: 'text')]
     private $content;
@@ -33,21 +34,13 @@ class Comment
     #[ORM\Column(name: 'created_at', type: 'datetime')]
     private $created;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuthorName(): ?string
-    {
-        return $this->authorName;
-    }
-
-    public function setAuthorName(string $authorName): self
-    {
-        $this->authorName = $authorName;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -79,8 +72,21 @@ class Comment
         return $this->created;
     }
 
+    #[PrePersist]
     public function setCreated()
     {
         $this->created = new \DateTime();
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

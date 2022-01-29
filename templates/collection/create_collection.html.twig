@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create collection!{% endblock %}
+{% block title %}Create collection{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-
+    <link rel="stylesheet" href="{{ asset('style/collection.css') }}">
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
-    <section class="form-main">
+    <h1>Create Collection.</h1>
+    <section class="form form-main form-collection">
         {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
 
         <div class="mb-3">
