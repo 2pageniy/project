@@ -30,7 +30,7 @@ class Item
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'items')]
     private $tags;
 
-    #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'item', targetEntity: Comment::class, orphanRemoval: true)]
 //    #[ORM\OrderBy(['created' => 'DESC'])]
     private $comments;
 

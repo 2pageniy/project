@@ -35,7 +35,7 @@ class CollectionController extends AbstractController
 
 
         $repository = $doctrine->getRepository(Item::class);
-        $items = $repository->findAllTagsOrderedByNewest($id);
+        $items = $repository->findAllTagsOrderedByItem($id);
 
         return $this->render('collection/index.html.twig', [
             'itemCollection' => $itemCollection,
@@ -66,7 +66,7 @@ class CollectionController extends AbstractController
             }
             $this->em->persist($itemCollection);
             $this->em->flush();
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_profile', ['id' => $loggedUser->getId()]);
         }
 
         return $this->render('collection/create_collection.html.twig', [

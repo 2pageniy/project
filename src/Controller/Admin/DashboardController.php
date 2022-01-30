@@ -26,8 +26,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            // the name visible to end users
-            ->setTitle('COLL Corp.')
+            ->setTitle('Corp.')
             ;
     }
 

@@ -3,18 +3,54 @@
 {% block title %}Main page{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/main.css') }}">
 {% endblock %}
 
 {% block body %}
 {% include 'header.html.twig' %}
     <main>
         <section class="last-items">
+            <h2>Last added items:</h2>
+            {% if items %}
             <ul class="last-items-list">
-
+                {% for item in items %}
+                    <li class="lasts-item"><a class="item-link" href="{{ path('app_item', {id: item.id}) }}">{{ item.name }}</a></li>
+                {% endfor %}
             </ul>
+            {% else %}
+            <p class="not-found">Items not found</p>
+            {% endif %}
+        </section>
+        <section class="largest-collection">
+            <h2>Collections with the largest number of items:</h2>
+            {% if collections %}
+            <ul class="collection-items">
+                {% for collection in collections %}
+                    <li class="collection-list-item card mb-3"
+                        style="background: url({{ asset('uploads/pictures/' ~ collection.picture) }}) #FF9966 no-repeat; background-size: 100% 100%;">
+                        <div class="card-body">
+                            <a href="{{ path('app_collection', {id: collection.id}) }}" class="collection-link"><h5
+                                        class="card-title mb-2">{{ collection.name }}</h5>
+                            </a>
+                            <h6 class="card-subtitle mb-2">{{ collection.topic }}</h6>
+                            {{ collection.description|length > 50 ? (collection.description|slice(0, 50) ~ '...')|striptags('<b><i><strong><em>')|markdown : collection.description|striptags('<b><i><strong><em>')|markdown }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="not-found">Collections not found</p>
+            {% endif %}
+        </section>
+        <section class="tags-cloud">
+            <h2>Tag Cloud</h2>
+            <p class="tags">
+            {% for tag, weight in tags %}
+                <a href=""><span class="weight-{{ weight }}">#{{ tag }}</span></a>
+            {% else %}
+                <p class="not-found">There are no tags</p>
+            {% endfor %}
+            </p>
         </section>
     </main>
-    <footer>
-
-    </footer>
 {% endblock %}

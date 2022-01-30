@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +19,24 @@ class TagRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
+    }
+
+    /**
+     * @return Tag[] Returns an array of Item objects
+     */
+    public function findAllItemsOrderedByTag(QueryBuilder $qb = null)
+    {
+        return $this->getOrCreateQueryBuilder($qb)
+            ->leftJoin('t.items', 'collection')
+            ->addSelect('collection')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    {
+        return $qb ?: $this->createQueryBuilder('t');
     }
 
     // /**

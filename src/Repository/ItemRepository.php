@@ -23,12 +23,25 @@ class ItemRepository extends ServiceEntityRepository
      /**
       * @return Item[] Returns an array of Item objects
       */
-    public function findAllTagsOrderedByNewest($id, QueryBuilder $qb = null)
+    public function findAllTagsOrderedByItem($id, QueryBuilder $qb = null)
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('i.collection = ' . $id)
             ->leftJoin('i.tags', 'tag')
             ->addSelect('tag')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return Item[] Returns an array of Item objects
+     */
+    public function findAllCollectionsOrderedByItem(QueryBuilder $qb = null)
+    {
+        return $this->getOrCreateQueryBuilder($qb)
+            ->leftJoin('i.collection', 'collection')
+            ->addSelect('collection')
             ->getQuery()
             ->getResult()
             ;
