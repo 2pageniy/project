@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/search.css') }}">
+{% endblock %}
+{% block body %}
+    {% include 'header.html.twig' %}
+
+    <div class="search-field">
+        #{{ tag.name }}
+    </div>
+    <section class="search-result">
+        <h2>Items found:</h2>
+        <ul class="item-list">
+            {% for item in tag.items %}
+                <li class="search-item">
+                    <a class="item-link" href="{{ path('app_item', {id : item.id}) }}">{{ item.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

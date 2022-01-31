@@ -46,7 +46,7 @@
             <h2>Tag Cloud</h2>
             <p class="tags">
             {% for tag, weight in tags %}
-                <a href=""><span class="weight-{{ weight }}">#{{ tag }}</span></a>
+                <a href="{{ path('app_search', {name: tag}) }}"><span class="weight-{{ weight }}">#{{ tag }}</span></a>
             {% else %}
                 <p class="not-found">There are no tags</p>
             {% endfor %}

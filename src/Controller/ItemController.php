@@ -109,9 +109,9 @@ class ItemController extends AbstractController
         } else return $this->redirectToRoute('app_main');
 
         $tags = $item->getTags();
-        $tagName = [];
+        $tagsItem = [];
         foreach ($tags as $tag) {
-            $tagName[] = $tag->getName();
+            $tagsItem[] = $tag->getName();
         }
         $form = $this->createForm(CreateItemType::class, $item);
         $form->handleRequest($request);
@@ -119,6 +119,15 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($form->getClickedButton() && 'save' === $form->getClickedButton()->getName()) {
+                $getTags = explode(" ", $form->get('tags')->getData() ? $form->get('tags')->getData() : " ");
+                $removedTags = array_diff($tagsItem, $getTags);
+                $tags = $repository->findBy([
+                    'name' => $removedTags
+                ]);
+                foreach ($tags as $removedTag) {
+                    $item->removeTag($removedTag);
+
+                }
                 $item->setName($form->get('name')->getData());
                 $this->tags($form, $repository, $item);
             }
@@ -134,7 +143,7 @@ class ItemController extends AbstractController
         return $this->render('item/edit_item.html.twig', [
             'editItemForm' => $form->createView(),
             'item' => $item,
-            'tagName' => (implode(" ", $tagName)),
+            'tagName' => (implode(" ", $tagsItem)),
         ]);
     }
 

@@ -15,7 +15,7 @@
                 {% if item.tags|length != 0 %}
                     Item tags:
                     {% for tag in item.tags %}
-                        <a href="">#{{ tag.name }}</a>
+                        <a href="{{ path('app_search', {name: tag.name}) }}">#{{ tag.name }}</a>
                     {% endfor %}
                 {% else %}
                     Item tags are missing
