@@ -23,7 +23,7 @@ class CollectionController extends AbstractController
     {
     }
 
-    #[Route('/collection/{id}', name: 'app_collection')]
+    #[Route('/{_locale<%app.supported_locales%>}/collection/{id}', name: 'app_collection')]
     public function index(ManagerRegistry $doctrine, int $id): Response
     {
 
@@ -43,7 +43,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route('/create/collection/{id}', name: 'app_create_collection')]
+    #[Route('/{_locale<%app.supported_locales%>}/create/collection/{id}', name: 'app_create_collection')]
     public function create(Request $request, FileUploader $fileUploader, int $id): Response
     {
         $itemCollection = new ItemCollection();
@@ -74,7 +74,7 @@ class CollectionController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/collection/{id}', name: 'app_edit_collection')]
+    #[Route('/{_locale<%app.supported_locales%>}/edit/collection/{id}', name: 'app_edit_collection')]
     public function edit(int $id, Request $request, FileUploader $fileUploader): Response
     {
         $user = $this->getUser();

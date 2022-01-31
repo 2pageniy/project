@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Profile{% endblock %}
+{% block title %}{{ 'Profile'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('style/profile.css') }}" rel="stylesheet"/>
@@ -9,10 +9,10 @@
     <main>
         {% if app.user and (app.user.id == creatorId or app.user.roles[0] == 'ROLE_ADMIN') %}
             <a class="create-collection-link" href="{{ path('app_create_collection', {id: creatorId}) }}">
-                <button class="btn create-btn">Create new collection</button>
+                <button class="btn create-btn">{{ 'Create new collection'|trans }}</button>
             </a>
         {% endif %}
-        <h3>User Collections: {{ user.username }}</h3>
+        <h3>{{ 'User Collections:'|trans }} {{ user.username }}</h3>
         {% if itemCollections|length != 0 %}
             <section class="collections">
                 <ul class="collection-list">
@@ -24,7 +24,7 @@
                                 <a href="{{ path('app_collection', {id: itemCollection.id}) }}" class="collection-link">
                                     <h5 class="card-title mb-2">{{ itemCollection.name }}</h5>
                                 </a>
-                                <h6 class="card-subtitle mb-2">{{ itemCollection.topic }}</h6>
+                                <h6 class="card-subtitle mb-2">{{ itemCollection.topic|trans }}</h6>
                                 {{ itemCollection.description|length > 50 ? (itemCollection.description|slice(0, 50) ~ '...')|striptags('<b><i><strong><em>')|markdown : itemCollection.description|striptags('<b><i><strong><em>')|markdown }}
                                 {% if app.user and (app.user.id == creatorId or app.user.roles[0] == 'ROLE_ADMIN') %}
                                     <a href="{{ path('app_edit_collection', {id: itemCollection.id}) }}"
@@ -36,7 +36,7 @@
                 </ul>
             </section>
         {% else %}
-            <p style="text-align: center">Collections not found.</p>
+            <p style="text-align: center">{{ 'Collections not found'|trans }}.</p>
         {% endif %}
     </main>
 {% endblock %}

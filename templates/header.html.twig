@@ -8,15 +8,29 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary disabled">Overview</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark disabled">Invite</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark disabled">Collection</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark disabled">Products</a></li>
+                <li><a href="#" class="nav-link px-2 link-secondary disabled">{{ 'Overview'|trans }}</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark disabled">{{ 'Invite'|trans }}</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark disabled">{{ 'Collection'|trans }}</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark disabled">{{ 'Products'|trans }}</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="search">
+                <input type="search" class="form-control" placeholder="{{ 'Search...'|trans }}" aria-label="Search" name="search">
             </form>
+            <div class="dropdown text-end ms-3">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-language" role="button"
+                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdown-language">
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_main', {_locale: 'en'}) }}">English</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_main', {_locale: 'ru'}) }}">Русский</a>
+                    </li>
+                </ul>
+            </div>
             {% if app.user %}
                 <div class="dropdown text-end ms-3">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
@@ -24,22 +38,23 @@
                         <span>{{ app.user.username }}</span>
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="{{ path('app_create_collection', {id: app.user.id}) }}">New collection...</a></li>
-                        <li><a class="dropdown-item disabled" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_profile', {id: app.user.id}) }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_create_collection', {id: app.user.id}) }}">{{ 'New collection...'|trans }}</a></li>
+                        <li><a class="dropdown-item disabled" href="#">{{ 'Settings'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_profile', {id: app.user.id}) }}">{{ 'Profile'|trans }}</a>
+                        </li>
                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                            <li><a class="dropdown-item" href="{{ path('admin') }}">Admin panel</a></li>
+                            <li><a class="dropdown-item" href="{{ path('admin') }}">{{ 'Admin panel'|trans }}</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Sign out</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'Sign out'|trans }}</a></li>
                     </ul>
                 </div>
             {% else %}
                 <div class="text-end ms-3">
-                    <a href="{{ path('app_login') }}" class="btn me-2 btn-outline-secondary">Login</a>
-                    <a href="{{ path('app_register') }}" class="btn btn-warning">Sign-up</a>
+                    <a href="{{ path('app_login') }}" class="btn me-2 btn-outline-secondary">{{ 'Login'|trans }}</a>
+                    <a href="{{ path('app_register') }}" class="btn btn-warning">{{ 'Sign-up'|trans }}</a>
                 </div>
             {% endif %}
         </div>

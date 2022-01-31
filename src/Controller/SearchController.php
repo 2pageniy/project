@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search/{name}', name: 'app_search')]
+    #[Route('/{_locale<%app.supported_locales%>}/search/{name}', name: 'app_search')]
     public function index(string $name, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Tag::class);

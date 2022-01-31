@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search{% endblock %}
+{% block title %}{{ 'Search'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/search.css') }}">
@@ -12,7 +12,8 @@
         #{{ tag.name }}
     </div>
     <section class="search-result">
-        <h2>Items found:</h2>
+        {% if tag.items|length != 0  %}
+        <h2>{{ 'Items found'|trans }}:</h2>
         <ul class="item-list">
             {% for item in tag.items %}
                 <li class="search-item">
@@ -20,5 +21,8 @@
                 </li>
             {% endfor %}
         </ul>
+            {% else %}
+            <h2>{{ 'Items not found'|trans }}</h2>
+        {% endif %}
     </section>
 {% endblock %}

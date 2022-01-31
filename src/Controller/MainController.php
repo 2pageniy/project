@@ -13,7 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_main')]
+
+    #[Route('/')]
+    public function indexNoLocale(): Response
+    {
+        return $this->redirectToRoute('app_main', ['_locale' => 'en']);
+    }
+
+
+    #[Route('/{_locale<%app.supported_locales%>}', name: 'app_main')]
     public function index(ManagerRegistry $doctrine): Response
     {
         //last 10 items

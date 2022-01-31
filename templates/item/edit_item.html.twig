@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}{{ 'Edit item'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/items.css') }}">
@@ -7,7 +8,7 @@
 {% block body %}
     {% include 'header.html.twig' %}
     <main>
-        <h1>Edit item: {{ item.name }}</h1>
+        <h1>{{ 'Edit item'|trans }}: {{ item.name }}</h1>
 
         {{ form_start(editItemForm, {'attr': {'class': 'form form-main form-item'}}) }}
         <div class="mb-3">

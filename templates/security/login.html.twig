@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log In!{% endblock %}
+{% block title %}{{ 'Log In'|trans }}!{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('style/auth.css') }}" rel="stylesheet"/>
@@ -8,19 +8,19 @@
 {% block body %}
     <section class="form-main">
         <p><a href="{{ path('app_main') }}"><img src="{{ asset('images/logo.png') }}" alt="logo" width="60"/></a></p>
-        <h1>Sign in</h1>
+        <h1>{{ 'Sign in'|trans }}</h1>
         {% if error %}
             <p class="alert alert-danger">{{ error.messageKey|replace({"Invalid credentials." : "Invalid username or password."})|trans(error.messageData, 'security') }}</p>
         {% endif %}
         <form method="post" class="form form-registration">
             <div class="mb-3">
-                <label for="inputUsername">Username or email address</label>
+                <label for="inputUsername">{{ 'Username or email address'|trans }}</label>
                 <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control"
                        autocomplete="username" required autofocus>
             </div>
 
             <div class="mb-3">
-                <label for="inputPassword">Password</label>
+                <label for="inputPassword">{{ 'Password'|trans }}</label>
                 <input type="password" name="password" id="inputPassword" class="form-control"
                        autocomplete="current-password" required>
             </div>
@@ -39,10 +39,9 @@
                 </label>
             </div>
             #}
-            <input type="submit" class="btn btn-success form-control" name="sign-in" value="Sign in">
+            <input type="submit" class="btn btn-success form-control" name="sign-in" value="{{ 'Sign in'|trans }}">
 
         </form>
-        <p>Not registered? <a href="{{ path('app_register') }}">Create an account</a>.</p>
+        <p>{{ 'Not registered'|trans }}? <a href="{{ path('app_register') }}">{{ 'Create an account'|trans }}</a>.</p>
     </section>
-
 {% endblock %}

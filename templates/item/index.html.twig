@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}View item{% endblock %}
+{% block title %}{{ 'View item'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/items.css') }}">
@@ -8,23 +8,23 @@
 {% block body %}
     {% include 'header.html.twig' %}
     <main>
-        <h1>Item in collection: <a class="link" href="{{ path('app_collection', {id: item.collection.id}) }}">{{ item.collection.name }}</a></h1>
+        <h1>{{ 'Item in collection'|trans }}: <a class="link" href="{{ path('app_collection', {id: item.collection.id}) }}">{{ item.collection.name }}</a></h1>
         <section class="item">
-            <h2>Item name: {{ item.name }}</h2>
+            <h2>{{ 'Item name'|trans }}: {{ item.name }}</h2>
             <p>
                 {% if item.tags|length != 0 %}
-                    Item tags:
+                    {{ 'Item tags'|trans }}:
                     {% for tag in item.tags %}
                         <a href="{{ path('app_search', {name: tag.name}) }}">#{{ tag.name }}</a>
                     {% endfor %}
                 {% else %}
-                    Item tags are missing
+                    {{ 'Item tags are missing'|trans }}
                 {% endif %}
             </p>
         </section>
         <hr>
         <section class="comments">
-            <h3>{{ item.comments|length }} Comments</h3>
+            <h3>{{ item.comments|length }} {{ 'Comments'|trans }}</h3>
             <hr>
             {% if app.user %}
                 <div class="form-comment">
@@ -34,14 +34,14 @@
                         {{ form_errors(createCommentForm.content, {'attr': {'class': 'errors'}}) }}
                         {{ form_widget(createCommentForm.content, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <button type="submit" class="btn btn-info">Comment</button>
+                    <button type="submit" class="btn btn-info">{{ 'Comment'|trans }}</button>
                     {{ form_end(createCommentForm) }}
                 </div>
                 <ul class="comments-list">
                     {% for comment in comments %}
                         <li class="comments-list-item">
                             <span class="commenter-name">{{ comment.author.getusername() }}</span>
-                            <small>about {{ comment.created|ago }}</small>
+                            <small>{{ 'about'|trans }} {{ comment.created|ago }}</small>
                             <br>
                             <span class="comment"> {{ comment.content }}</span>
                         </li>
@@ -50,8 +50,8 @@
 
             {% else %}
                 <p>
-                    To view the comments you need to <a href="{{ path('app_login') }}">log in</a> or <a
-                            href="{{ path('app_register') }}">register</a>
+                    {{ 'To view the comments you need to'|trans }} <a href="{{ path('app_login') }}">{{ 'Login'|trans }}</a> or <a
+                            href="{{ path('app_register') }}">{{ 'register'|trans }}</a>
                 </p>
             {% endif %}
         </section>

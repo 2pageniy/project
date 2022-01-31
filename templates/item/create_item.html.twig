@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit collection{% endblock %}
+{% block title %}{{ 'Create item'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/collection.css') }}">
@@ -11,14 +11,13 @@
         <ul class="nav nav-pills nav-justified" style="max-width: 600px; margin: 0 auto;">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page"
-                   href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">Edit
-                    collection</a>
+                   href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">{{ 'Edit collection'|trans }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#">Create new item</a>
+                <a class="nav-link active" href="#">{{ 'Create new item'|trans }}</a>
             </li>
         </ul>
-        <h1>Create new item</h1>
+        <h1>{{ 'Create new item'|trans }}</h1>
         {{ form_start(createItemForm, {'attr': {'class': 'form form-main form-collection'}}) }}
         <div class="mb-3">
             {{ form_label(createItemForm.name) }}<br>

@@ -19,7 +19,7 @@ class ProfileController extends AbstractController
     {
     }
 
-    #[Route('/id{id}', name: 'app_profile')]
+    #[Route('/{_locale<%app.supported_locales%>}/id{id}', name: 'app_profile')]
     public function index(ManagerRegistry $doctrine, int $id): Response
     {
         $user = $this->em->find(User::class, $id);

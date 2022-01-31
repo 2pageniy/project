@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="KLYZtrS" resname="Last added items:">
+        <source>Last added items:</source>
+        <target>Последние добавленные айтемы:</target>
+      </trans-unit>
+      <trans-unit id="cuk5_0o" resname="Items not found">
+        <source>Items not found</source>
+        <target>Айтемы не найдены</target>
+      </trans-unit>
+      <trans-unit id="0lqHjxe" resname="Collections with the largest number of items:">
+        <source>Collections with the largest number of items:</source>
+        <target>Коллекции с наибольшим количеством айтемов:</target>
+      </trans-unit>
+      <trans-unit id="x9ma12M" resname="Collections not found">
+        <source>Collections not found</source>
+        <target>Коллекции не найдены</target>
+      </trans-unit>
+      <trans-unit id="c3Prcqy" resname="Tag Cloud">
+        <source>Tag Cloud</source>
+        <target>Облако тегов</target>
+      </trans-unit>
+      <trans-unit id="tV_Txqv" resname="There are no tags">
+        <source>There are no tags</source>
+        <target>Тут нет тегов</target>
+      </trans-unit>
+      <trans-unit id="1LHqVwj" resname="Overview">
+        <source>Overview</source>
+        <target>Обзор</target>
+      </trans-unit>
+      <trans-unit id="H9muFge" resname="Invite">
+        <source>Invite</source>
+        <target>Пригласить</target>
+      </trans-unit>
+      <trans-unit id="e3kHCP8" resname="Collection">
+        <source>Collection</source>
+        <target>Колекции</target>
+      </trans-unit>
+      <trans-unit id="TtyL_vx" resname="Products">
+        <source>Products</source>
+        <target>Средства</target>
+      </trans-unit>
+      <trans-unit id="WxVF4L_" resname="New collection...">
+        <source>New collection...</source>
+        <target>Новая коллекция...</target>
+      </trans-unit>
+      <trans-unit id="dKiDoDe" resname="Settings">
+        <source>Settings</source>
+        <target>Настройки</target>
+      </trans-unit>
+      <trans-unit id="1pajW90" resname="Profile">
+        <source>Profile</source>
+        <target>Профиль</target>
+      </trans-unit>
+      <trans-unit id="Y4ND.sf" resname="Admin panel">
+        <source>Admin panel</source>
+        <target>Админ панель</target>
+      </trans-unit>
+      <trans-unit id="SPDT05f" resname="Sign out">
+        <source>Sign out</source>
+        <target>Выход</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="PMCOvp1" resname="Sign-up">
+        <source>Sign-up</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="BdjoPo1" resname="Create new item">
+        <source>Create new item</source>
+        <target>Новый айтем</target>
+      </trans-unit>
+      <trans-unit id="38pv9MY" resname="Creator Name">
+        <source>Creator Name</source>
+        <target>Имя создателя</target>
+      </trans-unit>
+      <trans-unit id="eRfhKhR" resname="Name collection">
+        <source>Name collection</source>
+        <target>Название колекции</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="EzEnW8U" resname="Tags">
+        <source>Tags</source>
+        <target>Теги</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Действие</target>
+      </trans-unit>
+      <trans-unit id="f1U4Ihn" resname="Search...">
+        <source>Search...</source>
+        <target>Поиск...</target>
+      </trans-unit>
+      <trans-unit id="ZGTWybd" resname="Create new collection">
+        <source>Create new collection</source>
+        <target>Новая коллекция</target>
+      </trans-unit>
+      <trans-unit id="LvS_tIy" resname="User Collections:">
+        <source>User Collections:</source>
+        <target>Коллекция пользователя:</target>
+      </trans-unit>
+      <trans-unit id="5uMkHtS" resname="Edit collection">
+        <source>Edit collection</source>
+        <target>Редактировать коллекцию</target>
+      </trans-unit>
+      <trans-unit id="OSq9WaV" resname="Please select a topic">
+        <source>Please select a topic</source>
+        <target>Выберете тему</target>
+      </trans-unit>
+      <trans-unit id="fmGEfWH" resname="Topic">
+        <source>Topic</source>
+        <target>Тема</target>
+      </trans-unit>
+      <trans-unit id="euV9nQ6" resname="Coins">
+        <source>Coins</source>
+        <target>Монеты</target>
+      </trans-unit>
+      <trans-unit id="XskCWu6" resname="Stamps">
+        <source>Stamps</source>
+        <target>Марки</target>
+      </trans-unit>
+      <trans-unit id="qvx7Dpu" resname="Weapons">
+        <source>Weapons</source>
+        <target>Оружие</target>
+      </trans-unit>
+      <trans-unit id="v4M9iNA" resname="Soldiers">
+        <source>Soldiers</source>
+        <target>Солдатики</target>
+      </trans-unit>
+      <trans-unit id="2I0GKCy" resname="Bricks with brands">
+        <source>Bricks with brands</source>
+        <target>Кирпичи с клеймами</target>
+      </trans-unit>
+      <trans-unit id="naf3a8g" resname="Books">
+        <source>Books</source>
+        <target>Книги</target>
+      </trans-unit>
+      <trans-unit id="ZwqALrr" resname="Alcohol">
+        <source>Alcohol</source>
+        <target>Алкоголь</target>
+      </trans-unit>
+      <trans-unit id="nkmeTNr" resname="Cars">
+        <source>Cars</source>
+        <target>Машины</target>
+      </trans-unit>
+      <trans-unit id="SWCCbAO" resname="Lamps">
+        <source>Lamps</source>
+        <target>Лампы</target>
+      </trans-unit>
+      <trans-unit id="tDJAoz9" resname="Picture (JPEG, PNG file)">
+        <source>Picture (JPEG, PNG file)</source>
+        <target>Изображение (JPEG, PNG файл)</target>
+      </trans-unit>
+      <trans-unit id="bqPNeKy" resname="Create Collection">
+        <source>Create Collection</source>
+        <target>Создать коллекцию</target>
+      </trans-unit>
+      <trans-unit id="n4Tu6.h" resname="Edit item">
+        <source>Edit item</source>
+        <target>Редактировать айтем</target>
+      </trans-unit>
+      <trans-unit id="nN.ElsX" resname="Item in collection">
+        <source>Item in collection</source>
+        <target>Айтем из коллекции</target>
+      </trans-unit>
+      <trans-unit id="cNX0MMo" resname="Item name">
+        <source>Item name</source>
+        <target>Имя айтема</target>
+      </trans-unit>
+      <trans-unit id="GxLDONn" resname="Item tags">
+        <source>Item tags</source>
+        <target>Теги айтема</target>
+      </trans-unit>
+      <trans-unit id="dudcg0F" resname="Item tags are missing">
+        <source>Item tags are missing</source>
+        <target>Тегов не найдено</target>
+      </trans-unit>
+      <trans-unit id="NV958p1" resname="Comments">
+        <source>Comments</source>
+        <target>Комментарии</target>
+      </trans-unit>
+      <trans-unit id="pCYuHJv" resname="about">
+        <source>about</source>
+        <target>около</target>
+      </trans-unit>
+      <trans-unit id=".j5tS3f" resname="To view the comments you need to">
+        <source>To view the comments you need to</source>
+        <target>Чтобы посмотреть комментарии надо выполнить</target>
+      </trans-unit>
+      <trans-unit id="h3gPpd5" resname="register">
+        <source>register</source>
+        <target>зарегистрироваться</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Ред.</target>
+      </trans-unit>
+      <trans-unit id="3Mg5pAF" resname="View">
+        <source>View</source>
+        <target>Посмотреть</target>
+      </trans-unit>
+      <trans-unit id="RPXj__x" resname="Comment">
+        <source>Comment</source>
+        <target>Комментировать</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="FV_BbAQ" resname="Submit">
+        <source>Submit</source>
+        <target>Отправить</target>
+      </trans-unit>
+      <trans-unit id="XiuOllA" resname="Sign up">
+        <source>Sign up</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="v9QCsvb" resname="Sign in">
+        <source>Sign in</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="6.zSWXT" resname="Username or email address">
+        <source>Username or email address</source>
+        <target>Имя пользователя или почта</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="53.qk20" resname="Already have an account?">
+        <source>Already have an account?</source>
+        <target>Уже есть аккаунт?</target>
+      </trans-unit>
+      <trans-unit id="yjdMI_2" resname="Not registered">
+        <source>Not registered</source>
+        <target>Не зарегистрированы</target>
+      </trans-unit>
+      <trans-unit id="hgM.daT" resname="Create an account">
+        <source>Create an account</source>
+        <target>Создать аккаунт</target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Почта</target>
+      </trans-unit>
+      <trans-unit id="c1prjRW" resname="Agree terms">
+        <source>Agree terms</source>
+        <target>Согласен с условиями</target>
+      </trans-unit>
+      <trans-unit id="aRUr01l" resname="Create collection">
+        <source>Create collection</source>
+        <target>Создание коллекции</target>
+      </trans-unit>
+      <trans-unit id="hX.V070" resname="Items Collection">
+        <source>Items Collection</source>
+        <target>Айтемы коллекции</target>
+      </trans-unit>
+      <trans-unit id="CrelniH" resname="Create item">
+        <source>Create item</source>
+        <target>Создание айтема</target>
+      </trans-unit>
+      <trans-unit id="ieItQEY" resname="View item">
+        <source>View item</source>
+        <target>Просмотр айтема</target>
+      </trans-unit>
+      <trans-unit id="ykRC2jP" resname="Main page">
+        <source>Main page</source>
+        <target>Главная страница</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="Le1KPuZ" resname="Log In">
+        <source>Log In</source>
+        <target>Авторизация</target>
+      </trans-unit>
+      <trans-unit id="cKYVdqJ" resname="Items found">
+        <source>Items found</source>
+        <target>Найденные айтемы</target>
+      </trans-unit>
+      <trans-unit id="ScJmuqq" resname="Search">
+        <source>Search</source>
+        <target>Поиск</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -24,7 +24,7 @@ class ItemController extends AbstractController
     {
     }
 
-    #[Route('/item/{id}', name: 'app_item')]
+    #[Route('/{_locale<%app.supported_locales%>}/item/{id}', name: 'app_item')]
     public function index(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $repository = $doctrine->getRepository(Item::class);
@@ -59,7 +59,7 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route('/create/item/{id}', name: 'app_create_item')]
+    #[Route('/{_locale<%app.supported_locales%>}/create/item/{id}', name: 'app_create_item')]
     public function create(int $id, Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Tag::class);
@@ -96,7 +96,7 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/item/{id}', name: 'app_edit_item')]
+    #[Route('/{_locale<%app.supported_locales%>}/edit/item/{id}', name: 'app_edit_item')]
     public function edit(int $id, Request $request, ManagerRegistry $doctrine,): Response
     {
         $user = $this->getUser();

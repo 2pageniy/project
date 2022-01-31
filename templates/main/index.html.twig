@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Main page{% endblock %}
+{% block title %}{{ 'Main page'|trans }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/main.css') }}">
@@ -10,7 +10,7 @@
     {% include 'header.html.twig' %}
     <main>
         <section class="last-items">
-            <h2>Last added items:</h2>
+            <h2>{{ 'Last added items:'|trans }}</h2>
             {% if items %}
                 <ul class="last-items-list">
                     {% for item in items %}
@@ -18,11 +18,11 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p class="not-found">Items not found</p>
+                <p class="not-found">{{ 'Items not found'|trans }}</p>
             {% endif %}
         </section>
         <section class="largest-collection">
-            <h2>Collections with the largest number of items:</h2>
+            <h2>{{ 'Collections with the largest number of items:'|trans }}</h2>
             {% if collections %}
                 <ul class="collection-items">
                     {% for collection in collections %}
@@ -39,16 +39,16 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p class="not-found">Collections not found</p>
+                <p class="not-found">{{ 'Collections not found'|trans }}</p>
             {% endif %}
         </section>
         <section class="tags-cloud">
-            <h2>Tag Cloud</h2>
+            <h2>{{ 'Tag Cloud'|trans }}</h2>
             <p class="tags">
                 {% for tag, weight in tags %}
                 <a href="{{ path('app_search', {name: tag}) }}"><span class="weight-{{ weight }}">#{{ tag }}</span></a>
                 {% else %}
-            <p class="not-found">There are no tags</p>
+            <p class="not-found">{{ 'There are no tags'|trans }}</p>
             {% endfor %}
             </p>
         </section>
