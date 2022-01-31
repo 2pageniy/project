@@ -28,7 +28,7 @@ h2 {
 }
 
 .lasts-item {
-    color:black;
+    color: black;
     font-size: 20px;
     border: 2px solid black;
     background-color: white;
@@ -45,11 +45,10 @@ h2 {
 .item-link:hover {
     color: red;
     background-color: #FFFFCC;
-
 }
 
 .lasts-item:hover {
-    box-shadow: 0 0 5px 0;
+    box-shadow: 0 0 50px -25px;
 }
 
 .item-link:active {
@@ -77,6 +76,10 @@ h2 {
     border: 2px solid black;
     margin-top: 15px;
     width: 17rem;
+}
+
+.collection-list-item:hover {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 .collection-list-item .card-body h5 {
@@ -126,6 +129,7 @@ h2 {
     font-weight: bold;
     text-align: center;
 }
+
 .tags-cloud .tags span {
     display: inline-block;
     color: #000;
@@ -137,11 +141,29 @@ h2 {
     border-radius: 3px;
 }
 
-.tags-cloud .tags .weight-1 { font-size: 12px; }
-.tags-cloud .tags .weight-2 { font-size: 15px; }
-.tags-cloud .tags .weight-3 { font-size: 18px; }
-.tags-cloud .tags .weight-4 { font-size: 21px; }
-.tags-cloud .tags .weight-5 { font-size: 24px; }
+.tags-cloud .tags span:hover {
+    color: #5b5b5b;
+}
+
+.tags-cloud .tags .weight-1 {
+    font-size: 12px;
+}
+
+.tags-cloud .tags .weight-2 {
+    font-size: 15px;
+}
+
+.tags-cloud .tags .weight-3 {
+    font-size: 18px;
+}
+
+.tags-cloud .tags .weight-4 {
+    font-size: 21px;
+}
+
+.tags-cloud .tags .weight-5 {
+    font-size: 24px;
+}
 
 
 .not-found {

@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-{{ parent() }}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('style/items.css') }}">
 {% endblock %}
 
 {% block body %}
-{% include 'header.html.twig' %}
+    {% include 'header.html.twig' %}
     <main>
-    <h1>Edit item: {{ item.name }}</h1>
+        <h1>Edit item: {{ item.name }}</h1>
 
-    {{ form_start(editItemForm, {'attr': {'class': 'form form-main form-item'}}) }}
-    <div class="mb-3">
-        {{ form_label(editItemForm.name) }}<br>
-        {{ form_errors(editItemForm.name, {'attr': {'class': 'errors'}}) }}
-        {{ form_widget(editItemForm.name, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="mb-3">
-        {{ form_label(editItemForm.tags) }}<br>
-        {{ form_errors(editItemForm.tags, {'attr': {'class': 'errors'}}) }}
-        {{ form_widget(editItemForm.tags, {'attr': {'class': 'form-control'}, 'value' : tagName}) }}
-    </div>
+        {{ form_start(editItemForm, {'attr': {'class': 'form form-main form-item'}}) }}
+        <div class="mb-3">
+            {{ form_label(editItemForm.name) }}<br>
+            {{ form_errors(editItemForm.name, {'attr': {'class': 'errors'}}) }}
+            {{ form_widget(editItemForm.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(editItemForm.tags) }}<br>
+            {{ form_errors(editItemForm.tags, {'attr': {'class': 'errors'}}) }}
+            {{ form_widget(editItemForm.tags, {'attr': {'class': 'form-control'}, 'value' : tagName}) }}
+        </div>
 
-    {{ form_widget(editItemForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
-    {{ form_widget(editItemForm.delete, {'attr': {'class': 'btn btn-danger form-control btn-delete'}}) }}
+        {{ form_widget(editItemForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
+        {{ form_widget(editItemForm.delete, {'attr': {'class': 'btn btn-danger form-control btn-delete'}}) }}
 
-    {{ form_end(editItemForm) }}
+        {{ form_end(editItemForm) }}
     </main>
 {% endblock %}

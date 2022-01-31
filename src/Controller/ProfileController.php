@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -16,13 +16,14 @@ class ProfileController extends AbstractController
     public function __construct(
         private EntityManagerInterface $em
     )
-    { }
+    {
+    }
 
     #[Route('/id{id}', name: 'app_profile')]
     public function index(ManagerRegistry $doctrine, int $id): Response
     {
         $user = $this->em->find(User::class, $id);
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_main');
         }
 
@@ -31,7 +32,6 @@ class ProfileController extends AbstractController
         $itemCollections = $repository->findBy([
             'creator' => $id,
         ]);
-
 
 
         return $this->render('profile/index.html.twig', [

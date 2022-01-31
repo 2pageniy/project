@@ -12,18 +12,17 @@
                 <button class="btn create-btn">Create new collection</button>
             </a>
         {% endif %}
-        <h3>User Collection: {{ user.username }}</h3>
+        <h3>User Collections: {{ user.username }}</h3>
         {% if itemCollections|length != 0 %}
             <section class="collections">
                 <ul class="collection-list">
 
                     {% for itemCollection in itemCollections %}
                         <li class="collection-list-item card mb-3"
-                            style="background: url({{ asset('uploads/pictures/' ~ itemCollection.picture) }}) #0732de no-repeat; background-size: 100% 100%;">
+                            style="background: url({{ asset('uploads/pictures/' ~ itemCollection.picture) }}) #8ddad5 no-repeat; background-size: 100% 100%;">
                             <div class="card-body">
                                 <a href="{{ path('app_collection', {id: itemCollection.id}) }}" class="collection-link">
-                                    <h5
-                                            class="card-title mb-2">{{ itemCollection.name }}</h5>
+                                    <h5 class="card-title mb-2">{{ itemCollection.name }}</h5>
                                 </a>
                                 <h6 class="card-subtitle mb-2">{{ itemCollection.topic }}</h6>
                                 {{ itemCollection.description|length > 50 ? (itemCollection.description|slice(0, 50) ~ '...')|striptags('<b><i><strong><em>')|markdown : itemCollection.description|striptags('<b><i><strong><em>')|markdown }}

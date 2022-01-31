@@ -1,7 +1,8 @@
 <header class="p-3 border-bottom" style="background: white;">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="{{ path('app_main') }}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+            <a href="{{ path('app_main') }}"
+               class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                 <img src="{{ asset('images/logo.png') }}" class="bi me-2" width="40" height="32" role="img"
                      aria-label="Bootstrap">
             </a>
@@ -27,7 +28,7 @@
                         <li><a class="dropdown-item disabled" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_profile', {id: app.user.id}) }}">Profile</a></li>
                         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                        <li><a class="dropdown-item" href="{{ path('admin') }}">Admin panel</a></li>
+                            <li><a class="dropdown-item" href="{{ path('admin') }}">Admin panel</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
