@@ -52,13 +52,14 @@ class MainController extends AbstractController
                 if ($countTag)
                     $tagWeights[$tag->getName()] = $countTag;
             }
+            if ($tagWeights) {
+                $max = max($tagWeights);
 
-            $max = max($tagWeights);
-
-            // Max of 5 weights
-            $multiplier = ($max > 5) ? 5 / $max : 1;
-            foreach ($tagWeights as &$tag) {
-                $tag = ceil($tag * $multiplier);
+                // Max of 5 weights
+                $multiplier = ($max > 5) ? 5 / $max : 1;
+                foreach ($tagWeights as &$tag) {
+                    $tag = ceil($tag * $multiplier);
+                }
             }
         }
 

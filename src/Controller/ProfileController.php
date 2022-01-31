@@ -37,6 +37,7 @@ class ProfileController extends AbstractController
         return $this->render('profile/index.html.twig', [
             'itemCollections' => $itemCollections,
             'creatorId' => $id,
+            'user' => $user,
         ]);
 
     }

@@ -7,48 +7,48 @@
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
+    <main>
+        <ul class="nav nav-pills nav-justified" style="max-width: 600px; margin: 0 auto;">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Edit collection</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">Create new item</a>
+            </li>
+        </ul>
+        <h1>Edit collection: {{ itemCollection.name }}</h1>
+        <section class="form form-main form-collection">
+            {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
 
-    <ul class="nav nav-pills nav-justified" style="max-width: 600px; margin: 0 auto;">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Edit collection</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_create_item', {id: itemCollection.id}) }}">Create new item</a>
-        </li>
-    </ul>
-    <h1>Edit collection: {{ itemCollection.name }}</h1>
-    <section class="form form-main form-collection">
-        {{ form_start(createCollectionForm, {'attr': {'class': 'form'}}) }}
+            <div class="mb-3">
+                {{ form_label(createCollectionForm.name) }}<br>
+                {{ form_errors(createCollectionForm.name, {'attr': {'class': 'errors'}}) }}
+                {{ form_widget(createCollectionForm.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form_label(createCollectionForm.name) }}<br>
-            {{ form_errors(createCollectionForm.name, {'attr': {'class': 'errors'}}) }}
-            {{ form_widget(createCollectionForm.name, {'attr': {'class': 'form-control'}}) }}
-        </div>
+            <div class="mb-3">
+                {{ form_label(createCollectionForm.topic) }}<br>
+                {{ form_errors(createCollectionForm.topic) }}
+                {{ form_widget(createCollectionForm.topic, {'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form_label(createCollectionForm.topic) }}<br>
-            {{ form_errors(createCollectionForm.topic) }}
-            {{ form_widget(createCollectionForm.topic, {'attr': {'class': 'form-control'}}) }}
-        </div>
+            <div class="mb-3">
+                {{ form_label(createCollectionForm.description) }}<br>
+                {{ form_errors(createCollectionForm.description) }}
+                {{ form_widget(createCollectionForm.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form_label(createCollectionForm.description) }}<br>
-            {{ form_errors(createCollectionForm.description) }}
-            {{ form_widget(createCollectionForm.description, {'attr': {'class': 'form-control'}}) }}
-        </div>
+            <div class="mb-3">
+                {{ form_label(createCollectionForm.picture) }}<br>
+                {{ form_errors(createCollectionForm.picture) }}
+                {{ form_widget(createCollectionForm.picture, {'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form_label(createCollectionForm.picture) }}<br>
-            {{ form_errors(createCollectionForm.picture) }}
-            {{ form_widget(createCollectionForm.picture, {'attr': {'class': 'form-control'}}) }}
-        </div>
+            {{ form_widget(createCollectionForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
+            {{ form_widget(createCollectionForm.delete, {'attr': {'class': 'btn btn-danger form-control btn-delete'}}) }}
 
-        {{ form_widget(createCollectionForm.save, {'attr': {'class': 'btn btn-success form-control'}}) }}
-        {{ form_widget(createCollectionForm.delete, {'attr': {'class': 'btn btn-danger form-control btn-delete'}}) }}
+            {{ form_end(createCollectionForm) }}
 
-        {{ form_end(createCollectionForm) }}
-
-    </section>
-
+        </section>
+    </main>
 {% endblock %}

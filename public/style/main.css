@@ -1,6 +1,11 @@
 body {
-    background: #fa8e47;
-    color: #fff;
+    background: url(../images/bg-main.png) repeat;
+    background-size: 250px;
+}
+
+main {
+    background-color: rgb(255, 255, 255, 0.8);
+    min-height: 100vh;
 }
 
 h2 {
@@ -8,7 +13,6 @@ h2 {
 }
 
 .last-items {
-    margin-top: 20px;
     padding: 15px 0 55px;
     border-top: 2px solid black;
 }
@@ -29,7 +33,6 @@ h2 {
     border: 2px solid black;
     background-color: white;
     margin: 5px auto;
-
 }
 
 .item-link {
@@ -117,7 +120,6 @@ h2 {
 
 .tags-cloud {
     padding: 20px;
-    margin-bottom: 30px;
 }
 
 .tags-cloud .tags {

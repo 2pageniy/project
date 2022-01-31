@@ -8,7 +8,7 @@
 {% block body %}
     {% include 'header.html.twig' %}
     <main>
-        <h1>Item in collection: {{ item.collection.name }}</h1>
+        <h1>Item in collection: <a class="link" href="{{ path('app_collection', {id: item.collection.id}) }}">{{ item.collection.name }}</a></h1>
         <section class="item">
             <h2>Item name: {{ item.name }}</h2>
             <p>

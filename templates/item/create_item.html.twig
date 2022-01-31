@@ -7,6 +7,7 @@
 {% endblock %}
 {% block body %}
     {% include 'header.html.twig' %}
+    <main>
     <ul class="nav nav-pills nav-justified" style="max-width: 600px; margin: 0 auto;">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{{ path('app_edit_collection', {id: itemCollection.id}) }}">Edit
@@ -34,4 +35,5 @@
     {{ form_widget(createItemForm.delete, {'attr': {'class': 'btn btn-danger form-control disabled visually-hidden'}}) }}
 
     {{ form_end(createItemForm) }}
+    </main>
 {% endblock %}
